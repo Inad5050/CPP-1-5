@@ -103,8 +103,8 @@ public:
 
         std::cout << "Enter index of contact to view details: ";
         int index;
-        std::cin >> index;
-        std::cin.ignore();
+        std::cin >> index; //recibe datos del terminal hasta que el usuario pulsa Enter, si el dato no coincide con el tipo de variable en el que queremos almacenarlo la variable da error
+        std::cin.ignore(); //descartar caracteres no deseados del buffer de entrada, evitando problemas en futuras lecturas. Cuando usas std::cin >> variable;, cin solo lee la parte necesaria para la variable, dejando el resto de los caracteres en el buffer. std::cin.ignore(); se usa para limpiar esos caracteres no deseados. conviene usarlo si despues vamos a usar std::getline()
 
         if (index >= 0 && index < contactCount)
             contacts[index].displayContact();
