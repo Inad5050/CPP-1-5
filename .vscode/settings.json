@@ -1,5 +1,7 @@
 {
 	"files.associations": {
+		"iostream": "cpp",
+		"*.tcc": "cpp",
 		"cctype": "cpp",
 		"clocale": "cpp",
 		"cmath": "cpp",
@@ -13,7 +15,6 @@
 		"array": "cpp",
 		"atomic": "cpp",
 		"bit": "cpp",
-		"*.tcc": "cpp",
 		"compare": "cpp",
 		"concepts": "cpp",
 		"cstdint": "cpp",
@@ -38,7 +39,6 @@
 		"initializer_list": "cpp",
 		"iomanip": "cpp",
 		"iosfwd": "cpp",
-		"iostream": "cpp",
 		"istream": "cpp",
 		"limits": "cpp",
 		"new": "cpp",

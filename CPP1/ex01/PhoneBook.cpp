@@ -1,7 +1,8 @@
 #include <iostream>
 #include <limits>
+#include <stdlib.h>
 
-#define	MAX_CONTACTS 2
+#define	MAX_CONTACTS 8
 
 class	Contact
 {
@@ -97,6 +98,11 @@ class	PhoneBook
 		return (std::cout << "Contact added" << std::endl, 0);
 	}
 
+//std::cin >> selected_index attempts to read a value from the input stream before checking if the end of the file (EOF) has been reached. Even if we call first for the eof evaluation
+//std::numeric_limits: This indicates that we are using the numeric_limits template from the standard library.
+//<std::streamsize>: This specifies that we are specializing the template for the type std::streamsize.
+//::max(): This calls the member function max() of the specialization std::numeric_limits<std::streamsize>, which returns the maximum value that std::streamsize can hold.
+	
 	int	search_contact() const
 	{
 		int	selected_index = -1;
@@ -106,13 +112,22 @@ class	PhoneBook
 		for (int i = 0; i < MAX_CONTACTS; i++)
 			contact_list[i].preview(i);
 		std::cout << "Enter index for additional information" << std::endl;
-		if (!(std::cin >> selected_index))
-			return (std::cin.clear(), std::cin.ignore(std::numeric_limits<std::streamsize>::max()), 1); //Cuando se introduce un valor no numérico, std::cin entra en un estado de error y no se limpia adecuadamente, lo que hace que el valor no numérico permanezca en el buffer de entrada y cause problemas en el bucle principal.
-		std::cin.ignore();
-		if (0 <= selected_index && selected_index < MAX_CONTACTS)
-			return (contact_list[selected_index].view_contact(selected_index), 0);
-		else
-			return (std::cout << "Incorrect index" << std::endl, 1);
+		while (1)
+		{
+			if (!(std::cin >> selected_index))
+			{
+				if (std::cin.eof())
+					return (1);
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << "Incorrect index" << std::endl;
+			}
+			else if (!(0 <= selected_index && selected_index < MAX_CONTACTS))
+				std::cout << "Incorrect index" << std::endl;
+		}
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		contact_list[selected_index].view_contact(selected_index);
+		return (0);
 	}
 
 	private:
@@ -131,14 +146,13 @@ int	main()
 	std::string	input;
 	while(1)
 	{
+		if (std::cin.eof())
+			return(std::cout << "EOF: Input stream closed" << std::endl, 0);
 		std::cout << "Enter command (ADD, SEARCH or EXIT): " << std::endl;
 		if (!std::getline(std::cin, input))
 			break;
 		else if (input == "ADD")
-		{
-			if (PB.add_contact())
-				continue;
-		}
+			(PB.add_contact());
 		else if (input == "SEARCH")
 		{
 			if (PB.search_contact())
