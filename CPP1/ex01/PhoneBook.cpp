@@ -1,65 +1,6 @@
-#include <iostream>
-#include <limits>
-#include <stdlib.h>
+#include "PhoneBook.hpp"
 
 #define	MAX_CONTACTS 8
-
-class	Contact
-{
-	private:
-	std::string	first_name;
-	std::string	last_name;
-	std::string	nickname;
-	std::string	phone_number;
-	std::string	darkest_secret;
-
-	public:
-	void	set_contact(std::string f_name, std::string last_n, std::string nick, std::string phone, std::string secret)
-	{
-		first_name = f_name;
-		last_name = last_n;
-		nickname = nick;
-		phone_number = phone;
-		darkest_secret = secret;
-	}
-
-	int		preview(int	index) const
-	{
-		if (index > MAX_CONTACTS)
-			return (std::cout << "Incorrect index" << std::endl, 1);
-		std::cout	<< "         " << index << "|"
-				 	<< set_size(first_name) << truncate(first_name) << "|"
-					<< set_size(last_name) << truncate(last_name) << "|"
-					<< set_size(nickname) << truncate(nickname) << "|" << std::endl;
-		return (0);
-	}
-
-	int		view_contact(int index) const
-	{
-		if (index > MAX_CONTACTS)
-			return (std::cout << "Incorrect index" << std::endl, 1);
-		std::cout << "First Name: " << first_name << std::endl;
-		std::cout << "Last Name: " << last_name << std::endl;
-		std::cout << "Nickname: " << nickname << std::endl;
-		std::cout << "Phone Number: " << phone_number << std::endl;
-		std::cout << "Darkest Secret: " << darkest_secret << std::endl;
-		return (0);
-	}
-
-	private:
-
-	std::string	set_size(std::string str1) const
-	{
-		std::string str2; //por defecto el constructor lo inicializa a ""
-		int	dif = 10 - str1.length();
-		return (dif > 0) ? (str2.append(dif, ' ')) : str2;
-	}
-
-	std::string truncate(std::string str) const
-	{
-		return (str.length() > 10) ? (str.substr(0, 9) + ".") : str;
-	}
-};
 
 class	PhoneBook
 {
@@ -139,29 +80,3 @@ class	PhoneBook
 		return (str.length());
 	}
 };
-
-int	main()
-{
-	PhoneBook	PB;
-	std::string	input;
-	while(1)
-	{
-		if (std::cin.eof())
-			return(std::cout << "EOF: Input stream closed" << std::endl, 0);
-		std::cout << "Enter command (ADD, SEARCH or EXIT): " << std::endl;
-		if (!std::getline(std::cin, input))
-			break;
-		else if (input == "ADD")
-			(PB.add_contact());
-		else if (input == "SEARCH")
-		{
-			if (PB.search_contact())
-				continue;
-		}
-		else if (input == "EXIT")
-			break;
-		else
-			std::cout << "Incorrect command" << std::endl;
-	}
-	return (0);
-}

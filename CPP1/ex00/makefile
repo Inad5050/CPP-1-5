@@ -1,4 +1,4 @@
-NAME = example
+NAME = megaphone
 CC = g++
 CCFLAGS = -Wall -Wextra -Werror -std=c++98
 

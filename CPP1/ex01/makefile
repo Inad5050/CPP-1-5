@@ -1,4 +1,4 @@
-NAME = example
+NAME = phonebook
 CC = g++
 CCFLAGS = -Wall -Wextra -Werror -std=c++98
 
