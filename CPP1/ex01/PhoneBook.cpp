@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 #define	MAX_CONTACTS 2
 
@@ -32,7 +33,7 @@ class	Contact
 		return (0);
 	}
 
-	int		view_contact(int index)
+	int		view_contact(int index) const
 	{
 		if (index > MAX_CONTACTS)
 			return (std::cout << "Incorrect index" << std::endl, 1);
@@ -78,25 +79,16 @@ class	PhoneBook
 	int	add_contact()
 	{	
 		std::string	first_name, last_name, nickname, phone_number, darkest_secret;
-		std::cout << "Enter first name" << std::endl;
-		std::getline(std::cin, first_name);
-		if (!first_name.length())
+
+		if (!add_contact_aux("first name", first_name))
 			return (std::cout << "Contact info can't be empty" << std::endl, 1);
-		std::cout << "Enter last name" << std::endl;
-		std::getline(std::cin, last_name);
-		if (!last_name.length())
+		if (!add_contact_aux("last name", last_name))
 			return (std::cout << "Contact info can't be empty" << std::endl, 1);
-		std::cout << "Enter nickname" << std::endl;
-		std::getline(std::cin, nickname);
-		if (!nickname.length())
+		if (!add_contact_aux("nickname", nickname))
 			return (std::cout << "Contact info can't be empty" << std::endl, 1);
-		std::cout << "Enter phone number" << std::endl;
-		std::getline(std::cin, phone_number);
-		if (!phone_number.length())
+		if (!add_contact_aux("phone number", phone_number))
 			return (std::cout << "Contact info can't be empty" << std::endl, 1);
-		std::cout << "Enter darkest secret" << std::endl;
-		std::getline(std::cin, darkest_secret);
-		if (!darkest_secret.length())
+		if (!add_contact_aux("darkest secret", darkest_secret))
 			return (std::cout << "Contact info can't be empty" << std::endl, 1);
 		contact_list[index].set_contact(first_name, last_name, nickname, phone_number, darkest_secret);
 		index = (index + 1) % MAX_CONTACTS;
@@ -105,7 +97,7 @@ class	PhoneBook
 		return (std::cout << "Contact added" << std::endl, 0);
 	}
 
-	int	search_contact()
+	int	search_contact() const
 	{
 		int	selected_index = -1;
 
@@ -115,36 +107,47 @@ class	PhoneBook
 			contact_list[i].preview(i);
 		std::cout << "Enter index for additional information" << std::endl;
 		if (!(std::cin >> selected_index))
-			return (std::cin.clear(), std::cin.ignore(), 1);
+			return (std::cin.clear(), std::cin.ignore(std::numeric_limits<std::streamsize>::max()), 1); //Cuando se introduce un valor no numérico, std::cin entra en un estado de error y no se limpia adecuadamente, lo que hace que el valor no numérico permanezca en el buffer de entrada y cause problemas en el bucle principal.
 		std::cin.ignore();
-
-		std::cout << "OLAOLA " << selected_index << std::endl;
-
 		if (0 <= selected_index && selected_index < MAX_CONTACTS)
 			return (contact_list[selected_index].view_contact(selected_index), 0);
 		else
 			return (std::cout << "Incorrect index" << std::endl, 1);
+	}
+
+	private:
+
+	int	add_contact_aux(std::string name, std::string& str)
+	{
+		std::cout << "Enter " << name << std::endl;
+		std::getline(std::cin, str);
+		return (str.length());
 	}
 };
 
 int	main()
 {
 	PhoneBook	PB;
-	std::string	input = "";
+	std::string	input;
 	while(1)
 	{
 		std::cout << "Enter command (ADD, SEARCH or EXIT): " << std::endl;
 		if (!std::getline(std::cin, input))
 			break;
-		if (input == "ADD")
-			PB.add_contact();
+		else if (input == "ADD")
+		{
+			if (PB.add_contact())
+				continue;
+		}
 		else if (input == "SEARCH")
-			PB.search_contact();
+		{
+			if (PB.search_contact())
+				continue;
+		}
 		else if (input == "EXIT")
 			break;
-		
-/* 		std::cout << "OLAOLA = " << input << std::endl;
-		input = ""; */
+		else
+			std::cout << "Incorrect command" << std::endl;
 	}
 	return (0);
 }
