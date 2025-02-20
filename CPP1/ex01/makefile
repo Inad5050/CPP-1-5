@@ -1,5 +1,5 @@
 NAME = phonebook
-CC = g++
+CC = c++
 CCFLAGS = -Wall -Wextra -Werror -std=c++98
 
 COLOR_GREEN = \033[0;32m
@@ -23,7 +23,8 @@ clean:
 	@rm -f $(OBJ)
 	@echo "$(COLOR_GREEN)------------ MESSAGE: CLEANING COMPLETED ------------$(COLOR_RESET)"
 
-fclean: clean
+fclean:
+	@rm -f $(OBJ)
 	@rm -f $(NAME)
 	@echo "$(COLOR_GREEN)------------ MESSAGE: FCLEANING COMPLETED ------------$(COLOR_RESET)"
 

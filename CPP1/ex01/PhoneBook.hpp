@@ -10,17 +10,17 @@
 
 class PhoneBook 
 {
-private:
+	private:
+		Contact	contact_list[MAX_CONTACTS];
+		int		index;
+		int		contact_count;
 
-    Contact	contact_list[MAX_CONTACTS];
-    int		index;
-    int		contact_count;
+		/* int add_contact_aux(const std::string& name, std::string& str); */
+		int	add_contact_aux(std::string name, std::string& str);
 
-    int add_contact_aux(const std::string& name, std::string& str);
-
-public:
-
-    PhoneBook();
-    int add_contact();
-    int search_contact() const;
+	public:
+		PhoneBook();
+		~PhoneBook();
+		int add_contact();
+		int search_contact() const;
 };
