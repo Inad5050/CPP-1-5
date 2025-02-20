@@ -15,7 +15,7 @@
 
 int		main( void ) {
 
-	typedef std::vector<Account::t>							  accounts_t;
+	typedef std::vector<Account::t>							  accounts_t; //a vector is an array of elements, it can dinamically change sizes. Sintaxis: std::vector<data_type>. They automatically free their memory.
 	typedef std::vector<int>								  ints_t;
 	typedef std::pair<accounts_t::iterator, ints_t::iterator> acc_int_t;
 
