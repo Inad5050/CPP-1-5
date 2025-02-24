@@ -1,4 +1,4 @@
-NAME = Zombie
+NAME = Moar_brainz!
 CC = c++
 CCFLAGS = -Wall -Wextra -Werror -std=c++98
 
