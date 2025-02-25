@@ -2,6 +2,7 @@
 
 Contact::Contact() //constructor
 {}
+
 Contact::~Contact() //destructor
 {}
 

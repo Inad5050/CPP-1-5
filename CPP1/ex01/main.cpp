@@ -13,6 +13,6 @@ int	main(void)
 	if (!(std::cin >> name))
 		return (1);
 	Zombie* zombie_list = zombieHorde(N, name);
-	delete[] zombie_list;
+	delete [] zombie_list;
 	return (0);
 }
