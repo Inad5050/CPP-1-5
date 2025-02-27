@@ -23,9 +23,28 @@ void	Harl::error(void)
 
 void	Harl::complain(std::string level)
 {
-	void (Harl::*private_f[])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	std::string input_list[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	for (int i = 0; i < 4; i++)
-		if (level == input_list[i])
-			(this->*private_f[i])(); //cuando llamas a funciones miembro a traves de punteros tienes que llamarlas en el contexto de un objeto. el this-> (que referencia la clase a la que pertenece el objeto al que está apuntando) aorta ese contexto
+	int	x = -1;
+	
+	if (!level.compare("DEBUG"))
+		x = 0;
+	else if (!level.compare("INFO"))
+		x = 1;
+	else if (!level.compare("WARNING"))
+		x = 2;
+	else if (!level.compare("ERROR"))
+		x = 3;
+	switch (x)
+	{
+		case 0:
+			Harl::debug();
+		case 1:
+			Harl::info();
+		case 2:	
+			Harl::warning();
+		case 3:			
+			Harl::error();
+			break;
+		default:
+			std::cout << "Invalid input" << std::endl;
+	}
 }
