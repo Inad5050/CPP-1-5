@@ -31,3 +31,9 @@ int		Fixed::toInt(void) const
 	std::cout << "toInt member function called" << std::endl;
 	return (this->number >> this->fractional_bits);
 }
+
+std::ostream&	operator<<(std::ostream& os, const Fixed& fixed) //converts our output to float on the ostream so that we can print it
+{
+    os << fixed.toFloat();
+    return (os);
+}

@@ -45,4 +45,28 @@ class Fixed
 	int		toInt(void) const;
 
 	friend	std::ostream& operator<<(std::ostream& os, const Fixed& fixed); //a friend function is not a member, bus has acces to the private variables of a class. They are often used to overcharge operators
+
+	bool	operator>(const Fixed& other);
+	bool	operator<(const Fixed& other);
+	bool	operator>=(const Fixed& other);
+	bool	operator<=(const Fixed& other);
+	bool	operator==(const Fixed& other);
+	bool	operator!=(const Fixed& other);
+
+	Fixed&	operator++();
+	Fixed	operator++(int);
+	Fixed&	operator--();
+	Fixed	operator--(int);
+
+	Fixed	operator+(const Fixed& other);
+	Fixed	operator-(const Fixed& other);
+	Fixed	operator*(const Fixed& other);
+	Fixed	operator/(const Fixed& other);
+
+	static Fixed&		min(Fixed& other1, Fixed& other2);
+	static const Fixed&	min(const Fixed& other1, const Fixed& other2);
+	static Fixed&		max(Fixed& other1, Fixed& other2);
+	static const Fixed&	max(const Fixed& other1, const Fixed& other2);
+
+
 };
