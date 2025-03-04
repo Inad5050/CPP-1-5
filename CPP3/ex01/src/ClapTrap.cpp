@@ -77,5 +77,3 @@ int ClapTrap::checkStatus() const
 	}
 	return (0); 
 };
-
-

@@ -103,7 +103,6 @@ Fixed&	Fixed::operator++()
 	std::cout << "++ operator called" << std::endl;
 	number += 1;
 	return (*this);
-
 }
 
 Fixed	Fixed::operator++(int)
