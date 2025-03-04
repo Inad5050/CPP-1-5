@@ -1,15 +1,13 @@
 #include "Dog.hpp"
 
-Dog::Dog()
+Dog::Dog(): Animal("Dog")
 {
 	std::cout << "Generic dog constructor called" << std::endl;
-	type = "Dog";
 }
 
-Dog::Dog(const Dog& other)
+Dog::Dog(const Dog& other): Animal(other.type)
 {
 	std::cout << "Copy dog constructor called" << std::endl;
-	type = other.type;
 }
 
 Dog::~Dog()
@@ -21,13 +19,11 @@ Dog&	Dog::operator=(const Dog& other)
 {
 	std::cout << "Dog copy operator called" << std::endl;
 	if (this != &other)
-	{
-		type = other.type;
-	}
+		Animal::operator=(other);
 	return (*this);
 }
 
-void	Dog::makeSound(void)
+void	Dog::makeSound(void) const
 {
-	std::cout << "Dog makeSound called: MIAAAU!" << std::endl;
+	std::cout << "Dog makeSound called: GUAUUU!" << std::endl;
 }

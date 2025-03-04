@@ -1,9 +1,8 @@
 #include "Animal.hpp"
 
-Animal::Animal()
+Animal::Animal(): type("generic animal")
 {
 	std::cout << "Generic animal constructor called" << std::endl;
-	type = "generic animal";
 }
 
 Animal::Animal(const std::string type): type(type)
@@ -11,10 +10,9 @@ Animal::Animal(const std::string type): type(type)
 	std::cout << "Animal constructor called" << std::endl;
 }
 
-Animal::Animal(const Animal& other)
+Animal::Animal(const Animal& other): type(other.type)
 {
 	std::cout << "Copy animal constructor called" << std::endl;
-	type = other.type;
 }
 
 Animal::~Animal()
@@ -26,15 +24,16 @@ Animal&	Animal::operator=(const Animal& other)
 {
 	std::cout << "Animal copy operator called" << std::endl;
 	if (this != &other)
-	{
 		type = other.type;
-	}
 	return (*this);
 }
 
-std::string	Animal::getType(void) const
+const std::string&	Animal::getType(void) const
 {
-	std::string	str1 = "I am a " + type;
-	return (str1);
+	return (type);
 }
 
+void	Animal::makeSound(void) const
+{
+	std::cout << "Animal makeSound called: <<no noise>>!" << std::endl;
+}

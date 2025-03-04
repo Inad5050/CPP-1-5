@@ -1,15 +1,13 @@
 #include "Cat.hpp"
 
-Cat::Cat()
+Cat::Cat(): Animal("Cat")
 {
 	std::cout << "Generic cat constructor called" << std::endl;
-	type = "Cat";
 }
 
-Cat::Cat(const Cat& other)
+Cat::Cat(const Cat& other): Animal(other.type)
 {
 	std::cout << "Copy cat constructor called" << std::endl;
-	type = other.type;
 }
 
 Cat::~Cat()
@@ -21,13 +19,11 @@ Cat&	Cat::operator=(const Cat& other)
 {
 	std::cout << "Cat copy operator called" << std::endl;
 	if (this != &other)
-	{
-		type = other.type;
-	}
+		Animal::operator=(other);
 	return (*this);
 }
 
-void	Cat::makeSound(void)
+void	Cat::makeSound(void) const
 {
 	std::cout << "Cat makeSound called: MIAAAU!" << std::endl;
 }
