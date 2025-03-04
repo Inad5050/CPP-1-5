@@ -45,5 +45,7 @@ FragTrap::~FragTrap()
 
 void FragTrap::highFivesGuys(void)
 {
+	if (checkStatus() != 0)
+		return;
 	std::cout << "FragTrap high fives you!" << std::endl;
 }

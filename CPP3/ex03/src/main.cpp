@@ -11,5 +11,7 @@ int	main(void)
 	dia1.highFivesGuys();
 	dia1.guardGate();
 	dia1.beRepaired(10);
+	dia1.takeDamage(1000);
+	dia1.highFivesGuys();
 	return (0);
 }

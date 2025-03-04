@@ -40,10 +40,14 @@ FragTrap& FragTrap::operator=(const FragTrap& other)
 
 FragTrap::~FragTrap()
 {
+	if (checkStatus() != 0)
+		return;
 	std::cout << "FragTrap destuctor called!!" << std::endl;
 }
 
 void FragTrap::highFivesGuys(void)
 {
+	if (checkStatus() != 0)
+		return;
 	std::cout << "FragTrap high fives you!" << std::endl;
 }
