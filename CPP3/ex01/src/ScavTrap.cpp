@@ -2,7 +2,7 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-	std::cout << "ScavTrap default constructor called" << std::endl;
+	std::cout << "ScavTrap default constructor called!" << std::endl;
 	HitPoints = 100;
 	EnergyPoints = 50;
 	AttackDamage = 20;
@@ -10,7 +10,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 
 ScavTrap::ScavTrap(std::string &str) : ClapTrap(str)
 {
-	std::cout << "ScavTrap constructor called" << std::endl;
+	std::cout << "ScavTrap constructor called!" << std::endl;
 	HitPoints = 100;
 	EnergyPoints = 50;
 	AttackDamage = 20;
@@ -18,7 +18,7 @@ ScavTrap::ScavTrap(std::string &str) : ClapTrap(str)
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap()
 {
-	std::cout << "ScavTrap copy constructor called" << std::endl;
+	std::cout << "ScavTrap copy constructor called!" << std::endl;
 	name = other.name;
 	HitPoints = other.HitPoints;
 	EnergyPoints = other.EnergyPoints;
@@ -27,7 +27,7 @@ ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap()
 
 ScavTrap&	ScavTrap::operator=(const ScavTrap& other)
 {
-	std::cout << "ScavTrap copy assignment operator called" << std::endl;
+	std::cout << "ScavTrap copy assignment operator called!" << std::endl;
 	if (this != &other)
 	{
 		name = other.name;
@@ -40,7 +40,7 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& other)
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap destructor called" << std::endl;
+	std::cout << "ScavTrap destructor called!" << std::endl;
 };
 
 void	ScavTrap::attack(const std::string& target)

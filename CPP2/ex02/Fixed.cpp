@@ -2,7 +2,7 @@
 
 Fixed&	Fixed::operator=(const Fixed& other)
 {										
-	std::cout << "Copy assignment operator called" << std::endl;
+	std::cout << "Copy assignment operator called!" << std::endl;
 	if (this != &other)
 		this->number = other.number;
 	return (*this);
@@ -10,25 +10,25 @@ Fixed&	Fixed::operator=(const Fixed& other)
 
 int		Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
+	std::cout << "getRawBits member function called!" << std::endl;
 	return (this->number);
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits member function called" << std::endl;
+	std::cout << "setRawBits member function called!" << std::endl;
 	this->number = raw;
 }
 
 float	Fixed::toFloat(void) const
 {
-	std::cout << "toFloat member function called" << std::endl;
+	std::cout << "toFloat member function called!" << std::endl;
 	return (static_cast<float>(this->number) / (1 << fractional_bits)); //On CPP there isnt an inplicit cast if the function output is a float we have to cast it manually with static_cast<data_type>(to_cast_value)
 }
 
 int		Fixed::toInt(void) const
 {
-	std::cout << "toInt member function called" << std::endl;
+	std::cout << "toInt member function called!" << std::endl;
 	return (this->number >> this->fractional_bits);
 }
 
@@ -40,74 +40,74 @@ std::ostream&	operator<<(std::ostream& os, const Fixed& fixed) //converts our ou
 
 bool	Fixed::operator>(const Fixed& other)
 {
-	std::cout << "> operator called" << std::endl;
+	std::cout << "> operator called!" << std::endl;
 	return (number > other.number);
 }
 
 bool	Fixed::operator<(const Fixed& other)
 {
-	std::cout << "< operator called" << std::endl;
+	std::cout << "< operator called!" << std::endl;
 	return (number < other.number);
 }
 
 bool	Fixed::operator>=(const Fixed& other)
 {
-	std::cout << ">= operator called" << std::endl;
+	std::cout << ">= operator called!" << std::endl;
 	return (number >= other.number);
 }
 
 bool	Fixed::operator<=(const Fixed& other)
 {
-	std::cout << "<= operator called" << std::endl;
+	std::cout << "<= operator called!" << std::endl;
 	return (number <= other.number);
 }
 
 bool	Fixed::operator==(const Fixed& other)
 {
-	std::cout << "== operator called" << std::endl;
+	std::cout << "== operator called!" << std::endl;
 	return (number == other.number);
 }
 
 bool	Fixed::operator!=(const Fixed& other)
 {
-	std::cout << "!= operator called" << std::endl;
+	std::cout << "!= operator called!" << std::endl;
 	return (number != other.number);
 }
 
 Fixed	Fixed::operator+(const Fixed& other)
 {
-	std::cout << "+ operator called" << std::endl;
+	std::cout << "+ operator called!" << std::endl;
 	return (Fixed(toFloat() + other.toFloat()));
 }
 
 Fixed	Fixed::operator-(const Fixed& other)
 {
-	std::cout << "- operator called" << std::endl;
+	std::cout << "- operator called!" << std::endl;
 	return (Fixed(toFloat() - other.toFloat()));
 }
 
 Fixed	Fixed::operator*(const Fixed& other)
 {
-	std::cout << "* operator called" << std::endl;
+	std::cout << "* operator called!" << std::endl;
 	return (Fixed(toFloat() * other.toFloat()));
 }
 
 Fixed	Fixed::operator/(const Fixed& other)
 {
-	std::cout << "/ operator called" << std::endl;
+	std::cout << "/ operator called!" << std::endl;
 	return (Fixed(toFloat() / other.toFloat()));
 }
 
 Fixed&	Fixed::operator++()
 {
-	std::cout << "++ operator called" << std::endl;
+	std::cout << "++ operator called!" << std::endl;
 	number += 1;
 	return (*this);
 }
 
 Fixed	Fixed::operator++(int)
 {
-	std::cout << "++ operator called" << std::endl;
+	std::cout << "++ operator called!" << std::endl;
 	Fixed	temp(*this);
 	number += 1;
 	return (temp);
@@ -115,14 +115,14 @@ Fixed	Fixed::operator++(int)
 
 Fixed&	Fixed::operator--()
 {
-	std::cout << "-- operator called" << std::endl;
+	std::cout << "-- operator called!" << std::endl;
 	number -= 1;
 	return (*this);
 }
 
 Fixed	Fixed::operator--(int)
 {
-	std::cout << "-- operator called" << std::endl;
+	std::cout << "-- operator called!" << std::endl;
 	Fixed	temp(*this);
 	number -= 1;
 	return (temp);
@@ -130,7 +130,7 @@ Fixed	Fixed::operator--(int)
 
 Fixed&	Fixed::min(Fixed& other1, Fixed& other2)
 {
-	std::cout << "min member function called" << std::endl;
+	std::cout << "min member function called!" << std::endl;
 	if (other1.toFloat() < other2.toFloat())
 		return (other1);
 	else
@@ -139,7 +139,7 @@ Fixed&	Fixed::min(Fixed& other1, Fixed& other2)
 
 const Fixed&	Fixed::min(const Fixed& other1, const Fixed& other2)
 {
-	std::cout << "min member function called" << std::endl;
+	std::cout << "min member function called!" << std::endl;
 	if (other1.toFloat() < other2.toFloat())
 		return (other1);
 	else
@@ -148,7 +148,7 @@ const Fixed&	Fixed::min(const Fixed& other1, const Fixed& other2)
 
 Fixed&	Fixed::max(Fixed& other1, Fixed& other2)
 {
-	std::cout << "max member function called" << std::endl;
+	std::cout << "max member function called!" << std::endl;
 	if (other1.toFloat() < other2.toFloat())
 		return (other2);
 	else
@@ -157,7 +157,7 @@ Fixed&	Fixed::max(Fixed& other1, Fixed& other2)
 
 const Fixed&	Fixed::max(const Fixed& other1, const Fixed& other2)
 {
-	std::cout << "max member function called" << std::endl;
+	std::cout << "max member function called!" << std::endl;
 	if (other1.toFloat() < other2.toFloat())
 		return (other2);
 	else
