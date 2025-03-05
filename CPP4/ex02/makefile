@@ -1,11 +1,11 @@
-NAME = Polymorphism
+NAME = Instantiable
 CC = c++
 CCFLAGS = -Wall -Wextra -Werror -std=c++98
 
 COLOR_GREEN = \033[0;32m
 COLOR_RESET = \033[0m
 
-SRC_DIR = ./sources
+SRC_DIR = ./src
 SRC = $(shell find $(SRC_DIR) -type f -name "*.cpp")
 OBJ = $(SRC:.cpp=.o)
 
