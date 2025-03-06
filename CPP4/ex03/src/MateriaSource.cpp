@@ -4,15 +4,14 @@ MateriaSource::MateriaSource()
 {
 	std::cout << "MateriaSource default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
-		inventory[i] != nullptr;
-
+		inventory[i] = 0;
 }
 
 MateriaSource::MateriaSource(std::string)
 {
 	std::cout << "MateriaSource constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
-		inventory[i] != nullptr;
+		inventory[i] = 0;
 }
 
 MateriaSource::MateriaSource(MateriaSource& other)
@@ -20,8 +19,8 @@ MateriaSource::MateriaSource(MateriaSource& other)
 	std::cout << "MateriaSource copy constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
-		if (other.inventory[i] == nullptr)
-			continue;
+		if (other.inventory[i] == 0)
+			inventory[i] = 0;
 		else if ((other.inventory[i]->getType()).compare("ice") == 0)
 			inventory[i] = new Ice();
 		else if ((other.inventory[i]->getType()).compare("cure") == 0)
@@ -38,7 +37,7 @@ MateriaSource::~MateriaSource()
 {
 	std::cout << "MateriaSource destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
-		if (inventory[i] != nullptr)
+		if (inventory[i] != 0)
 			delete inventory[i];
 }
 
@@ -51,8 +50,8 @@ MateriaSource& MateriaSource::operator=(MateriaSource& other)
 			delete inventory[i];		
 		for (int i = 0; i < 4; i++)
 		{
-			if (other.inventory[i] == nullptr)
-				continue;
+			if (other.inventory[i] == 0)
+				inventory[i] = 0;
 			else if ((other.inventory[i]->getType()).compare("ice") == 0)
 				inventory[i] = new Ice();
 			else if ((other.inventory[i]->getType()).compare("cure") == 0)
@@ -71,25 +70,31 @@ MateriaSource& MateriaSource::operator=(MateriaSource& other)
 void MateriaSource::learnMateria(AMateria* m)
 {
 	int	i;
-	if (m = nullptr)
-	{
+	if (m == 0)
 		std::cout << "MateriaSource learnMateria() called! No materia to learn!" << std::endl;
-		return;
-	}
-	for (i = 0; i < 4 && inventory[i] != nullptr; i++)
-		inventory[i] = m;
-	if (i == 4)
-		std::cout << "MateriaSource learnMateria() called! No free slots on the inventory!" << std::endl;
 	else
-		std::cout << "MateriaSource learnMateria() called! " << m->getType() << " materia equiped in slot: " << i << "!" << std::endl;
+	{
+		for (i = 0; i < 4; i++)
+		{
+			if (inventory[i] == 0)
+			{
+				inventory[i] = m;
+				break;
+			}
+		}
+		if (i == 4)
+			std::cout << "MateriaSource learnMateria() called! No free slots on the inventory!" << std::endl;
+		else
+			std::cout << "MateriaSource learnMateria() called! " << m->getType() << " materia equiped in slot: " << i << "!" << std::endl;
+	}
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-	AMateria* newMateria;
+	AMateria* newMateria = 0;
 	for (int i = 0; i < 4; i++)
 	{
-		if (type.compare(inventory[i]->getType()) == 0)
+		if (inventory[i] != 0 && type.compare(inventory[i]->getType()) == 0)
 		{
 			if (type.compare("ice") == 0)
 				newMateria = new Ice();

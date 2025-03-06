@@ -7,7 +7,7 @@ Ice::Ice(): AMateria("ice")
 
 Ice::Ice(std::string& type): AMateria(type)
 {
-	std::cout << "Ice constrcutor called" << std::endl;
+	std::cout << "Ice constructor called" << std::endl;
 }
 
 Ice::Ice(Ice &other): AMateria(other.type)

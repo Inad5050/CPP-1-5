@@ -7,7 +7,7 @@ Cure::Cure(): AMateria("cure")
 
 Cure::Cure(std::string& type): AMateria(type)
 {
-	std::cout << "Cure constrcutor called" << std::endl;
+	std::cout << "Cure constructor called" << std::endl;
 }
 
 Cure::Cure(Cure &other): AMateria(other.type)

@@ -2,7 +2,7 @@
 #include "Ice.hpp"
 #include "Cure.hpp"
 
-class MateriaSource
+class MateriaSource: public IMateriaSource
 {
 	private:
 		AMateria* inventory[4];
@@ -11,7 +11,7 @@ class MateriaSource
 		MateriaSource();
 		MateriaSource(std::string );
 		MateriaSource(MateriaSource&);
-		~MateriaSource() {}
+		~MateriaSource();
 		MateriaSource& operator=(MateriaSource& other);
 
 		void learnMateria(AMateria*);

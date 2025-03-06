@@ -4,14 +4,14 @@ Character::Character(): name("Default name")
 {
 	std::cout << "Character default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
-		inventory[i] = nullptr;
+		inventory[i] = 0;
 }
 
 Character::Character(std::string name): name(name)
 {
 	std::cout << "Character constructor called. Only the name was copied. Materias weren't!" << std::endl;
 	for (int i = 0; i < 4; i++)
-		inventory[i] = nullptr;
+		inventory[i] = 0;
 }
 
 Character::Character(Character& other): name(other.name)
@@ -21,8 +21,8 @@ Character::Character(Character& other): name(other.name)
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			if (other.inventory[i] == nullptr)
-				continue;
+			if (other.inventory[i] == 0)
+				inventory[i] = 0;
 			else if ((other.inventory[i]->getType()).compare("ice") == 0)
 				inventory[i] = new Ice();
 			else if ((other.inventory[i]->getType()).compare("cure") == 0)
@@ -38,9 +38,9 @@ Character::Character(Character& other): name(other.name)
 
 Character::~Character()
 {
-	std::cout << "Character destrcutor called" << std::endl;
+	std::cout << "Character destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
-		if (inventory[i] != nullptr)
+		if (inventory[i] != 0)
 			delete inventory[i];
 }
 
@@ -54,8 +54,8 @@ Character& Character::operator=(Character& other)
 			delete inventory[i];		
 		for (int i = 0; i < 4; i++)
 		{
-			if (other.inventory[i] == nullptr)
-				continue;
+			if (other.inventory[i] == 0)
+				inventory[i] = 0;
 			else if ((other.inventory[i]->getType()).compare("ice") == 0)
 				inventory[i] = new Ice();
 			else if ((other.inventory[i]->getType()).compare("cure") == 0)
@@ -72,18 +72,24 @@ Character& Character::operator=(Character& other)
 
 std::string const & Character::getName() const
 {
-	std::cout << "Character getName() called. My name is: " << name << "!" << std::endl;
+	return (name);
 }
 
 void Character::equip(AMateria* m)
 {
-	if (m = nullptr)
+	int	i;
+	if (m == 0)
 		std::cout << "Character equip() called! No materia to equip!" << std::endl;
 	else
 	{
-		int	i;
-		for (i = 0; i < 4 && inventory[i] != nullptr; i++)
-			inventory[i] = m;
+		for (i = 0; i < 4; i++)
+		{
+			if (inventory[i] == 0)
+			{
+				inventory[i] = m;
+				break;
+			}
+		}
 		if (i == 4)
 			std::cout << "Character equip() called! No free slots on the inventory!" << std::endl;
 	}
@@ -91,19 +97,19 @@ void Character::equip(AMateria* m)
 
 void Character::unequip(int idx)
 {
-	if (inventory[idx] == nullptr)
+	if (inventory[idx] == 0)
 		std::cout << "Character unequip() called! No materia equipped in " << idx << " inventory slot" << std::endl;
 	else
 	{	
 		std::cout << "Character unequip() called! " << inventory[idx]->getType() << " materia dropped!" << std::endl;
 		delete inventory[idx];
-		inventory[idx] = nullptr;
+		inventory[idx] = 0;
 	}
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	if (inventory[idx] == nullptr)
+	if (inventory[idx] == 0)
 		std::cout << "Character use() called! No materia equipped in " << idx << " inventory slot" << std::endl;
 	else
 	{	
