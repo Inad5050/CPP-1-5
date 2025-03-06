@@ -9,7 +9,7 @@ Character::Character(): name("Default name")
 
 Character::Character(std::string name): name(name)
 {
-	std::cout << "Character constructor called" << std::endl;
+	std::cout << "Character constructor called. Only the name was copied. Materias weren't!" << std::endl;
 	for (int i = 0; i < 4; i++)
 		inventory[i] = nullptr;
 }
@@ -17,13 +17,31 @@ Character::Character(std::string name): name(name)
 Character::Character(Character& other): name(other.name)
 {
 	std::cout << "Character copy constructor called" << std::endl;
-	for (int i = 0; i < 4; i++)
-		inventory[i] = new AMateria(*other.inventory[i]);
+	if (this != &other)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (other.inventory[i] == nullptr)
+				continue;
+			else if ((other.inventory[i]->getType()).compare("ice") == 0)
+				inventory[i] = new Ice();
+			else if ((other.inventory[i]->getType()).compare("cure") == 0)
+				inventory[i] = new Cure();
+			else
+			{
+				std::cout << "Cannot copy " << other.inventory[i]->getType() << " materia!" << std::endl;
+				break;
+			}
+		}
+	}
 }
 
 Character::~Character()
 {
 	std::cout << "Character destrcutor called" << std::endl;
+	for (int i = 0; i < 4; i++)
+		if (inventory[i] != nullptr)
+			delete inventory[i];
 }
 
 Character& Character::operator=(Character& other)
@@ -32,9 +50,22 @@ Character& Character::operator=(Character& other)
 	if (this != &other)
 	{
 		name = other.name;
-		delete[] inventory;
 		for (int i = 0; i < 4; i++)
-			inventory[i] = new AMateria(*other.inventory[i]);
+			delete inventory[i];		
+		for (int i = 0; i < 4; i++)
+		{
+			if (other.inventory[i] == nullptr)
+				continue;
+			else if ((other.inventory[i]->getType()).compare("ice") == 0)
+				inventory[i] = new Ice();
+			else if ((other.inventory[i]->getType()).compare("cure") == 0)
+				inventory[i] = new Cure();
+			else
+			{
+				std::cout << "Cannot copy " << other.inventory[i]->getType() << " materia!" << std::endl;
+				break;
+			}
+		}
 	}
 	return (*this);
 }
@@ -60,11 +91,23 @@ void Character::equip(AMateria* m)
 
 void Character::unequip(int idx)
 {
-	std::cout << "haracter equip() called!" << std::endl;
+	if (inventory[idx] == nullptr)
+		std::cout << "Character unequip() called! No materia equipped in " << idx << " inventory slot" << std::endl;
+	else
+	{	
+		std::cout << "Character unequip() called! " << inventory[idx]->getType() << " materia dropped!" << std::endl;
+		delete inventory[idx];
+		inventory[idx] = nullptr;
+	}
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	std::cout << " " << std::endl;
+	if (inventory[idx] == nullptr)
+		std::cout << "Character use() called! No materia equipped in " << idx << " inventory slot" << std::endl;
+	else
+	{	
+		std::cout << "Character use() called! " << std::endl;
+		inventory[idx]->use(target);
+	}
 }
-

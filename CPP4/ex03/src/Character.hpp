@@ -2,13 +2,15 @@
 #include <iostream>
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 
 class Character: public ICharacter
 {
 	private:
 		std::string name;
 		AMateria* inventory[4];
-	
+
 	public:
 		Character();
 		Character(std::string name);
