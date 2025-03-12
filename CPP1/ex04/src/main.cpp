@@ -9,19 +9,20 @@ int	main(void)
 	std::string	line;
 
 	std::cout << "Give me a fileName" << std::endl;
-	if (!(std::cin >> fileName))
+	if (!(std::getline(std::cin, fileName)))
 		return (std::cerr << "Incorrect paramater, exiting." << std::endl, 1);
 	std::cout << "Give me a string" << std::endl;
-	if (!(std::cin >> str1))
+	if (!(std::getline(std::cin, str1)))
 		return (std::cerr << "Incorrect paramater, exiting." << std::endl, 1);
 	std::cout << "Give me another string" << std::endl;
-	if (!(std::cin >> str2))
+	if (!(std::getline(std::cin, str2)))
 		return (std::cerr << "Incorrect paramater, exiting." << std::endl, 1);
 
-	fileName2 = SedisForLosers(fileName, str1, str2);
+	fileName2 = replace(fileName, str1, str2);
 	if (fileName2.empty())
 		return (1);
-	
+
+	std::cout <<std::endl << std::endl;
 	std::ifstream	file2(fileName2.c_str());
 	if (!file2)
 		return (std::cout << "Cannot open file2 in main" << std::endl, 1);

@@ -7,13 +7,13 @@ int	main(void)
 	std::string*	stringPTR = &str;
 	std::string&	stringREF = str;
 
-	std::cout << "&str " << &str << std::endl;
-	std::cout << "&stringPTR " << &stringPTR << std::endl;
-	std::cout << "&stringREF " << &stringREF << std::endl;
+	std::cout << "&str		" << &str << std::endl;
+	std::cout << "&(*stringPTR)	" << &(*stringPTR) << std::endl;
+	std::cout << "&stringREF	" << &stringREF << std::endl;
 
-	std::cout << "str " << str << std::endl;
-	std::cout << "stringPTR " << *stringPTR << std::endl;
-	std::cout << "stringREF " << stringREF << std::endl;
+	std::cout << "str		" << str << std::endl;
+	std::cout << "stringPTR	" << *stringPTR << std::endl;
+	std::cout << "stringREF	" << stringREF << std::endl;
 
 	return (0);
 }

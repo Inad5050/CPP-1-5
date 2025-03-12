@@ -6,11 +6,14 @@
 class	HumanA
 {
 	private:
-	std::string	name;	
-	Weapon&		_Weapon;
+	std::string	name;
+	Weapon&		_weapon; //references must be initialized when they are created, and the must use referece an object which has the capacity to exists as long as they do (they cant reference a loval variable for example)
+	HumanA(); //when the default constructor is private it can't be used to create this class (without arguments) and the compiler won't create a new default constructor
 
 	public:
-	HumanA(std::string new_name, Weapon &new_Weapon) : name(new_name), _Weapon(new_Weapon) {}; 
-	~HumanA() {};
-	void	attack();	
+	HumanA(std::string	new_name, Weapon& weapon); 
+	~HumanA();
+	
+	void	attack();
+	void	setWeapon(Weapon& weaponName);
 };

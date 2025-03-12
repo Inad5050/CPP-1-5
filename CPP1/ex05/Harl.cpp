@@ -27,5 +27,5 @@ void	Harl::complain(std::string level)
 	std::string input_list[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	for (int i = 0; i < 4; i++)
 		if (level == input_list[i])
-			(this->*private_f[i])(); //cuando llamas a funciones miembro a traves de punteros tienes que llamarlas en el contexto de un objeto. el this-> (que referencia la clase a la que pertenece el objeto al que está apuntando) aorta ese contexto
+			(this->*private_f[i])(); //when you call member funtions with a pointer you have to call them through their object
 }

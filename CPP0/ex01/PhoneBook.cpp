@@ -31,7 +31,7 @@ int	PhoneBook::add_contact()
 	if (contact_count < MAX_CONTACTS)
 		contact_count++;
 	return (std::cout << "Contact added" << std::endl, 0);
-	}
+}
 
 //std::cin >> selected_index attempts to read a value from the input stream before checking if the end of the file (EOF) has been reached. Even if we call first for the eof evaluation
 //std::numeric_limits: This indicates that we are using the numeric_limits template from the standard library.

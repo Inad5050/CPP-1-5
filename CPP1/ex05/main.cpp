@@ -12,7 +12,7 @@ int	main(void)
 	while (1)
 	{
 		flag = 0;
-		std::cout << "Enter: DEBUG, INFO, WARNING or ERROR" << std::endl;
+		std::cout << "Enter: DEBUG, INFO, WARNING, ERROR or EXIT" << std::endl;
 		if (!std::getline(std::cin, input))
 		{
 			if (std::cin.eof())
@@ -26,6 +26,8 @@ int	main(void)
 		}
 		for (size_t i = 0; i < input_num; i++)
 		{
+			if (!input.compare("EXIT"))
+				return (std::cout << "Where are you going!? Im still speaking..." << std::endl, 0);
 			if (!input.compare(posible_input[i]))
 			{
 				mrHarl.complain(input);
