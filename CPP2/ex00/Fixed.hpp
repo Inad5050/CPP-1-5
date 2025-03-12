@@ -9,21 +9,9 @@ class Fixed
 
 	public:
 
-	Fixed::Fixed(): number(0)
-	{
-		std::cout << "Default constructor called!" << std::endl;
-	}
-
-	Fixed::Fixed(const Fixed& other): number(other.number) //copy constructor
-	{
-		std::cout << "Copy constructor called!" << std::endl;
-	}
-
-	Fixed::~Fixed() 
-	{
-		std::cout << "Destructor called!" << std::endl;
-	}
-
+	Fixed();
+	Fixed(const Fixed& other); //copy constructor
+	~Fixed();
 	//In the context of a C++ class, an operator is a special function that allows you to define how operators (such as +, -, =, ==, etc.) work for instances of your class. This is known as operator overloading. By overloading operators, you can provide custom behavior for operations involving objects of your class.
 	//copy assignment operator overload. Copy assignment operator: This operator first checks that the object is not being assigned to itself (this is called! "self-assignment"). If it is not self-assignment, it copies the value of number from the other object and returns a reference to the current Fixed object.
 	//this will execute when we execute Fixed a = Fixed b;

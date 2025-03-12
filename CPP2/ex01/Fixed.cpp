@@ -1,5 +1,30 @@
 #include "Fixed.hpp"
 
+Fixed::Fixed(): number(0)
+{
+	std::cout << "Default constructor called!" << std::endl;
+}
+
+Fixed::Fixed(const int input): number(input << fractional_bits) //new constructor 1
+{
+	std::cout << "Int constructor called!" << std::endl;
+}
+
+Fixed::Fixed(const float input): number(input * (1 << fractional_bits)) //new constructor 2
+{
+	std::cout << "Float constructor called!" << std::endl;
+}
+
+Fixed::Fixed(const Fixed& other): number(other.number) //copy constructor
+{
+	std::cout << "Copy constructor called!" << std::endl;
+}
+
+Fixed::~Fixed() 
+{
+	std::cout << "Destructor called!" << std::endl;
+}
+
 Fixed&	Fixed::operator=(const Fixed& other)
 {										
 	std::cout << "Copy assignment operator called!" << std::endl;
