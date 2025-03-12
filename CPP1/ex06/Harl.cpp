@@ -45,6 +45,7 @@ void	Harl::complain(std::string level)
 			Harl::error();
 			break;
 		default:
-			std::cout << "Invalid input" << std::endl;
+			std::cout << "Probably complaining about insignificant problems" << std::endl;
+			return;
 	}
 }

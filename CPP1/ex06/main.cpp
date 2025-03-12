@@ -8,7 +8,7 @@ int	main(void)
 
 	while (1)
 	{
-		std::cout << "Enter: DEBUG, INFO, WARNING or ERROR" << std::endl;
+		std::cout << "Enter: DEBUG, INFO, WARNING, ERROR or EXIT" << std::endl;
 		if (!std::getline(std::cin, input))
 		{
 			if (std::cin.eof())
@@ -20,6 +20,8 @@ int	main(void)
 				std::cout << "Invalid input" << std::endl;
 			}
 		}
+		else if (!input.compare("EXIT"))
+			break;
 		else
 			mrHarl.complain(input);
 	}	
