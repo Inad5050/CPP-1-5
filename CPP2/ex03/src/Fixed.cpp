@@ -12,8 +12,6 @@ Fixed::Fixed(const int input): number(input << fractional_bits) //new constructo
 
 Fixed::Fixed(const float input): number(input * (1 << fractional_bits)) //new constructor 2
 {
-	std::cout << "ADIOSSS" << number << std::endl;
-	std::cout << "ADIOSSS" << toFloat() << std::endl;
 	std::cout << "Float constructor called!" << std::endl;
 }
 
@@ -116,16 +114,7 @@ Fixed	Fixed::operator-(const Fixed& other) const
 Fixed	Fixed::operator*(const Fixed& other) const
 {
 	std::cout << "* operator called!" << std::endl;
-
-	std::cout << "OLAOLA number= " << toFloat() << std::endl;
-	std::cout << "OLAOLA other.number= " << other.toFloat() << std::endl;
-
-	std::cout << "OLAOLA number= " << number << std::endl;
-	std::cout << "OLAOLA other.number= " << other.number << std::endl;
-
-	long long result = ((number * other.number) >> fractional_bits);
-	/* float result = (toFloat() * other.toFloat()); */
-	return (Fixed(static_cast<int>(result)));
+	return (Fixed(toFloat() * other.toFloat()));
 }
 
 Fixed	Fixed::operator/(const Fixed& other) const

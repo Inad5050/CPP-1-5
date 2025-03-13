@@ -23,7 +23,7 @@ class Fixed
 	void	setRawBits(int const raw);
 
 	float	toFloat(void) const;
-	int		toInt(void) const;
-
-	friend	std::ostream& operator<<(std::ostream& os, const Fixed& fixed); //a friend function is not a member, bus has acces to the private variables of a class. They are often used to overcharge operators
+	int		toInt(void) const;	
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed); //en C++, los operadores que se definen como miembros de una clase tienen la restricción de que el operando izquierdo siempre debe ser una instancia de esa clase. Esto ocurre porque cuando defines un operador como miembro, implícitamente estás diciendo que el objeto sobre el cual se invoca el operador (this) será el operando izquierdo.
