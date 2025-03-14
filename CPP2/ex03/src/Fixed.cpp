@@ -10,7 +10,7 @@ Fixed::Fixed(const int input): number(input << fractional_bits) //new constructo
 	std::cout << "Int constructor called!" << std::endl;
 }
 
-Fixed::Fixed(const float input): number(input * (1 << fractional_bits)) //new constructor 2
+Fixed::Fixed(const float input): number(roundf(input * (1 << fractional_bits))) //new constructor 2
 {
 	std::cout << "Float constructor called!" << std::endl;
 }
@@ -48,7 +48,7 @@ void	Fixed::setRawBits(int const raw)
 float	Fixed::toFloat(void) const
 {
 	std::cout << "toFloat member function called!" << std::endl;
-	return (static_cast<float>(this->number) / (1 << fractional_bits)); //On CPP there isnt an inplicit cast if the function output is a float we have to cast it manually with static_cast<data_type>(to_cast_value)
+	return (static_cast<float>(number) / (1 << fractional_bits)); //On CPP there isnt an inplicit cast if the function output is a float we have to cast it manually with static_cast<data_type>(to_cast_value)
 }
 
 int		Fixed::toInt(void) const

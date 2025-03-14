@@ -10,7 +10,7 @@ Fixed::Fixed(const int input): number(input << fractional_bits) //new constructo
 	std::cout << "Int constructor called!" << std::endl;
 }
 
-Fixed::Fixed(const float input): number(input * (1 << fractional_bits)) //new constructor 2
+Fixed::Fixed(const float input): number(roundf(input * (1 << fractional_bits))) //new constructor 2
 {
 	std::cout << "Float constructor called!" << std::endl;
 }
